@@ -23,14 +23,17 @@ const FormFieldWithController = ({ controller, children }) => {
 };
 
 FormFieldWithController.propTypes = {
-	controller: {
+	controller: PropTypes.shape({
 		name: PropTypes.string.isRequired,
 		control: PropTypes.object.isRequired,
-		defaultValue: PropTypes.string.isRequired,
-		rules: {
+		defaultValue: PropTypes.oneOfType([
+			PropTypes.string,
+			PropTypes.bool
+		]).isRequired,
+		rules: PropTypes.shape({
 			required: PropTypes.bool,
-		},
-	},
+		}),
+	}),
 	props: PropTypes.node,
 };
 
