@@ -9,14 +9,12 @@ export const MainLayoutStyled = () => {
 		height: '100vh',
 
 		boxSizing: 'border-box',
-		border: '1px solid blue'
 	}))
 
 	const ContentLayoutMUI = styled('div')(() => ({
 		margin: '0 auto',
 		maxWidth: '1440px',
 
-		border: '1px solid red'
 	}))
 
 	return {

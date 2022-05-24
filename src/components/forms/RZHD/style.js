@@ -2,6 +2,16 @@ import {styled, Typography} from '@mui/material'
 
 export const RZHDFormStyled = () => {
 
+	const WrapperMUI = styled('div')(() => ({
+
+	}))
+
+	const ContainerMUI = styled('div')(() => ({
+		display: 'flex',
+		justifyContent: 'space-between',
+
+	}))
+
 	const RowMUI = styled('div')(() => ({
 		display: 'flex',
 		flexDirection: 'row',
@@ -19,11 +29,13 @@ export const RZHDFormStyled = () => {
 	}));
 
 	const TextMUI = styled(Typography)(() => ({
-		// border: '1px solid blue',
+
 	}))
 
 	return {
+		WrapperMUI,
 		RowMUI, ColumnMUI,
-		TextMUI
+		TextMUI,
+		ContainerMUI
 	}
 }
