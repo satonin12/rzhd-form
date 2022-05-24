@@ -1,30 +1,10 @@
 import {useMemo, useState} from 'react';
-import {useForm} from "react-hook-form";
+import {useFieldArray, useForm} from "react-hook-form";
 
 export const useRZHDForm = () => {
 	// * state's
 	const [passenger, setPassenger] = useState([]);
 	const [counter, setCounter] = useState(0);
-
-	// useForm initialize
-	const {handleSubmit, control} = useForm();
-
-	// * Handlers
-	const addPassenger = () => {
-		console.log('addPassenger')
-		setPassenger(prevState => [...prevState, counter]);
-		setCounter(prevState => prevState + 1);
-	}
-
-	const deletePassenger = (passengerIndex) => {
-		console.log('deletePassenger: ', passengerIndex)
-		setPassenger(prevState => [...prevState.filter(item => item !== passengerIndex)]);
-		setCounter(prevState => prevState - 1);
-	}
-
-	const onSubmit = (data) => {
-		console.log('data: ', data);
-	};
 
 	// memo's values
 	const defaultValues = useMemo(
@@ -44,28 +24,52 @@ export const useRZHDForm = () => {
 			phone: '',
 			email: '',
 
-			bonus: true,
+			bonus: false,
 		}),
 		[]
 	);
 
-	const splitNameWithCount = useMemo(() => {
-		const newPassengerFormName = {}
-
-		for(let i = 0; i < counter; i++) {
-			const innerObject = {}
-			const fieldName = `passenger[${i}]`;
-
-			for (let formName in defaultValues) innerObject[formName] = `${fieldName}.${formName}`;
-			newPassengerFormName[i] = innerObject
+	// useForm initialize
+	const {handleSubmit, control, watch} = useForm({
+		defaultValues: {
+			passenger: []
 		}
-		return newPassengerFormName
-	}, [counter]);
+	});
+	const {fields, append, remove} = useFieldArray({
+		control,
+		name: 'passenger'
+	})
+
+	// * Handlers
+	const addPassenger = () => {
+		console.log('addPassenger')
+		setPassenger(prevState => [...prevState, counter]);
+		setCounter(prevState => prevState + 1);
+
+		append({
+			...defaultValues
+		})
+
+	}
+
+	const deletePassenger = (passengerIndex) => {
+		console.log('deletePassenger: ', passengerIndex)
+		setPassenger(prevState => [...prevState.filter(item => item !== passengerIndex)]);
+		setCounter(prevState => prevState - 1);
+
+		remove(passengerIndex);
+	}
+
+	const onSubmit = (data) => {
+		console.log('data: ', data);
+	};
 
 	return {
 		useForm: {
 			handleSubmit,
-			control
+			control,
+			watch,
+			fields
 		},
 		formHandlers: {
 			addPassenger,
@@ -73,7 +77,6 @@ export const useRZHDForm = () => {
 		},
 		formValues: {
 			counter, passenger,
-			splitNameWithCount
 		},
 		onSubmit
 	}

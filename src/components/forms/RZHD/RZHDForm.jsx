@@ -1,46 +1,58 @@
 import React from 'react';
 
-import {useRZHDForm} from "./useRZHDForm";
-import RZHDFields from "./RZHDFields/RZHDFields";
+import { useRZHDForm } from './useRZHDForm';
+import RZHDFields from './RZHDFields/RZHDFields';
+import { RZHDFormStyled } from './style';
+import { Button } from '@mui/material';
+import BasicCard from '../../BasicCard/BasicCard';
 
 const RZHDForm = () => {
 	const {
-		useForm: {
-			handleSubmit,
-			control
-		},
-		formHandlers: {
-			addPassenger,
-			deletePassenger
-		},
+		useForm: { handleSubmit, control, fields },
+		formHandlers: { addPassenger, deletePassenger },
 		formValues: {
-			counter, passenger,
-			splitNameWithCount
+			counter
 		},
-		onSubmit
-	} = useRZHDForm()
+		onSubmit,
+	} = useRZHDForm();
 
+	console.log('fields: ', fields)
 
 	return (
-		<>
-			<h1>RZHDForm</h1>
-			<form onSubmit={handleSubmit(onSubmit)}>
+		<ContainerMUI>
+			<WrapperMUI>
+				<h1>Форма оформления пассажиров РЖД New</h1>
+				<form onSubmit={handleSubmit(onSubmit)}>
+					{fields.map((field, i) => (
+						<RZHDFields
+							key={field.id}
+							index={i}
+							control={control}
+							field={field}
+							deletePassenger={deletePassenger}
+						/>
+					))}
 
-				{passenger.map((item, i) => (
-					<RZHDFields
-						key={i}
-						index={item}
-						control={control}
-						names={splitNameWithCount[counter - 1]}
-						deletePassenger={deletePassenger}
-					/>
-				))}
+					<RowMUI>
+						<Button
+							variant="outlined"
+							type="button"
+							onClick={addPassenger}
+						>
+							Добавить пассажира
+						</Button>
+						<Button variant="contained" type="submit">
+							Сохранить данные
+						</Button>
+					</RowMUI>
+				</form>
+			</WrapperMUI>
 
-				<button type="button" onClick={addPassenger}>Добавить пассажира</button>
-				<button type="submit">submit</button>
-			</form>
-		</>
+			<BasicCard control={control} index={counter} />
+		</ContainerMUI>
 	);
 };
+
+const { WrapperMUI, RowMUI, ContainerMUI } = RZHDFormStyled();
 
 export default React.memo(RZHDForm);
