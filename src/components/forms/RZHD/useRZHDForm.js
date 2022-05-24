@@ -1,5 +1,7 @@
 import {useMemo, useState} from 'react';
 import {useFieldArray, useForm} from "react-hook-form";
+import {rzhdAxios} from "../../../lib/http";
+import axios from "axios";
 
 export const useRZHDForm = () => {
 	// * state's
@@ -60,8 +62,16 @@ export const useRZHDForm = () => {
 		remove(passengerIndex);
 	}
 
-	const onSubmit = (data) => {
-		console.log('data: ', data);
+	const onSubmit = async (data) => {
+		try {
+			console.log('data: ', data);
+			const response = await rzhdAxios.post('/passenger/add', data)
+			console.log('response: ', response);
+		} catch (err) {
+			if(axios.isAxiosError(err)){
+				console.log('err: ', err);
+			}
+		}
 	};
 
 	return {

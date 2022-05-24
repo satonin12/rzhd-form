@@ -1,7 +1,7 @@
 import React from 'react';
 import {Typography} from "@mui/material";
 
-import {reverse} from "../../lib/services";
+import {reverse} from "../../lib/services/services";
 
 import TypeDocumentArray from "../forms/RZHD/TypeDocumentData.json";
 import NationalDataArray from "../forms/RZHD/NationalData.json";
