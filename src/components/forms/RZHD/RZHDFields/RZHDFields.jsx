@@ -3,17 +3,16 @@ import { MenuItem } from '@mui/material';
 
 import CheckBoxUI from '../../../../UI/CheckBoxUI/CheckBoxUI';
 import TextFieldUI from '../../../../UI/TextFieldUI/TextFieldUI';
-import TextFieldSelectUI from '../../../../UI/TextFieldSelectUI/TextFieldSelectUI';
+import TextFieldSelectUI from '../../../../UI/TextFieldUI/TextFieldSelectUI/TextFieldSelectUI';
 import FormTextField from '../../../Fields/WithController/FormFieldWithController';
 
 import TypeDocumentArray from '../TypeDocumentData.json';
 import NationalDataArray from '../NationalData.json';
 
 import { RZHDFormStyled } from '../style';
+import TextFieldPhoneUI from "../../../../UI/TextFieldUI/TextFieldPhoneUI/TextFieldPhoneUI";
 
 const RZHDFields = ({ control, names, index, deletePassenger }) => {
-	console.log('NationalDataArray: ', NationalDataArray);
-
 	return (
 		<>
 			{/*! 1 линия*/}
@@ -25,9 +24,6 @@ const RZHDFields = ({ control, names, index, deletePassenger }) => {
 						name: names.snils,
 						control,
 						defaultValue: '',
-						rules: {
-							required: true,
-						},
 					}}
 				>
 					<TextFieldUI
@@ -36,7 +32,6 @@ const RZHDFields = ({ control, names, index, deletePassenger }) => {
 							label: 'Снилс',
 							name: names.snils,
 							type: 'text',
-							required: true,
 						}}
 					/>
 				</FormTextField>
@@ -92,9 +87,6 @@ const RZHDFields = ({ control, names, index, deletePassenger }) => {
 						name: names.patronymic,
 						control,
 						defaultValue: '',
-						rules: {
-							required: true,
-						},
 					}}
 				>
 					<TextFieldUI
@@ -103,38 +95,12 @@ const RZHDFields = ({ control, names, index, deletePassenger }) => {
 							label: 'Отчество (обязательно, при наличии)',
 							name: names.patronymic,
 							type: 'text',
-							required: true,
 						}}
 					/>
 				</FormTextField>
 			</RowMUI>
 
 			{/*! 3 линия*/}
-
-			<RowMUI>
-				<FormTextField
-					controller={{
-						name: names.patronymic,
-						control,
-						defaultValue: '',
-						rules: {
-							required: true,
-						},
-					}}
-				>
-					<TextFieldUI
-						inputProps={{
-							placeholder: '',
-							label: 'Отчество (обязательно, при наличии)',
-							name: names.patronymic,
-							type: 'text',
-							required: true,
-						}}
-					/>
-				</FormTextField>
-			</RowMUI>
-
-			{/*! 4 линия*/}
 
 			<RowMUI>
 				<FormTextField
@@ -178,8 +144,12 @@ const RZHDFields = ({ control, names, index, deletePassenger }) => {
 							placeholder: '',
 							label: 'Дата рождения',
 							name: names.birthday,
-							type: 'text',
+							type: 'date',
 							required: true,
+							InputLabelProps: {
+								shrink: true,
+								required: true
+							}
 						}}
 					/>
 				</FormTextField>
@@ -196,7 +166,6 @@ const RZHDFields = ({ control, names, index, deletePassenger }) => {
 				>
 					<TextFieldSelectUI
 						inputProps={{
-							placeholder: '',
 							label: 'Гражданство',
 							name: names.national,
 							required: true,
@@ -211,26 +180,74 @@ const RZHDFields = ({ control, names, index, deletePassenger }) => {
 				</FormTextField>
 			</RowMUI>
 
+			{/*! 4 линия*/}
+
+			<ColumnMUI>
+				<RowMUI>
+					<FormTextField
+						controller={{
+							name: names.notif,
+							control,
+							defaultValue: true,
+						}}
+					>
+						<CheckBoxUI
+							inputProps={{
+								placeholder: '',
+								label: 'Пол',
+								name: names.notif,
+								select: true,
+							}}
+						/>
+					</FormTextField>
+
+					<TextMUI>
+						Согласен на получение оповещений в случаях чрезвычайных ситуаций на желедорожном транспорте
+					</TextMUI>
+				</RowMUI>
+				<TextMUI>
+					Если вы хотите получать оповещения об изменении движения
+					вашего поезда в случае чрезвычайной ситуации, укажите,
+					пожалуйста e-mail и/или телефон пассажира. <br />
+					Если не хотите
+					получать оповещения - снимите галочку согласия на
+					оповещения.
+				</TextMUI>
+			</ColumnMUI>
+
 			{/*! 5 линия*/}
 
 			<RowMUI>
 				<FormTextField
 					controller={{
-						name: names.notif,
+						name: names.phone,
 						control,
-						defaultValue: true,
-						rules: {
-							required: true,
-						},
+						defaultValue: '',
 					}}
 				>
-					<CheckBoxUI
+					<TextFieldPhoneUI
 						inputProps={{
 							placeholder: '',
-							label: 'Пол',
-							name: names.notif,
-							required: true,
-							select: true,
+							label: 'Телефон пассажира',
+							name: names.phone,
+							type: 'text',
+						}}
+					/>
+				</FormTextField>
+
+				<FormTextField
+					controller={{
+						name: names.email,
+						control,
+						defaultValue: '',
+					}}
+				>
+					<TextFieldUI
+						inputProps={{
+							placeholder: '',
+							label: 'E-mail пассажира',
+							name: names.email,
+							type: 'email',
 						}}
 					/>
 				</FormTextField>
@@ -241,58 +258,9 @@ const RZHDFields = ({ control, names, index, deletePassenger }) => {
 			<RowMUI>
 				<FormTextField
 					controller={{
-						name: names.phone,
-						control,
-						defaultValue: '',
-						rules: {
-							required: true,
-						},
-					}}
-				>
-					<TextFieldUI
-						inputProps={{
-							placeholder: '',
-							label: 'Телефон пассажира',
-							name: names.phone,
-							type: 'text',
-							required: true,
-						}}
-					/>
-				</FormTextField>
-
-				<FormTextField
-					controller={{
-						name: names.email,
-						control,
-						defaultValue: '',
-						rules: {
-							required: true,
-						},
-					}}
-				>
-					<TextFieldUI
-						inputProps={{
-							placeholder: '',
-							label: 'E-mail пассажира',
-							name: names.email,
-							type: 'text',
-							required: true,
-						}}
-					/>
-				</FormTextField>
-			</RowMUI>
-
-			{/*! 7 линия*/}
-
-			<RowMUI>
-				<FormTextField
-					controller={{
 						name: names.bonus,
 						control,
 						defaultValue: true,
-						rules: {
-							required: true,
-						},
 					}}
 				>
 					<CheckBoxUI
@@ -300,20 +268,26 @@ const RZHDFields = ({ control, names, index, deletePassenger }) => {
 							placeholder: '',
 							label: 'Пол',
 							name: names.bonus,
-							required: true,
 							select: true,
 						}}
 					/>
 				</FormTextField>
+				<TextMUI>
+					Указать номер бонусной, электронной, дорожной карты или делового проездного.
+				</TextMUI>
 			</RowMUI>
 
+			{/*! 7 линия*/}
+
 			<RowMUI>
-				<button type="button" onClick={() => deletePassenger(index)}>Удалить пассажира</button>
+				<button type="button" onClick={() => deletePassenger(index)}>
+					Удалить пассажира
+				</button>
 			</RowMUI>
 		</>
 	);
 };
 
-const {RowMUI} = RZHDFormStyled();
+const { RowMUI, ColumnMUI, TextMUI } = RZHDFormStyled();
 
-export default React.memo(RZHDFields)
+export default React.memo(RZHDFields);

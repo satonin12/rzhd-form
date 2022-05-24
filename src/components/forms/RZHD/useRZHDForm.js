@@ -6,6 +6,9 @@ export const useRZHDForm = () => {
 	const [passenger, setPassenger] = useState([]);
 	const [counter, setCounter] = useState(0);
 
+	// useForm initialize
+	const {handleSubmit, control} = useForm();
+
 	// * Handlers
 	const addPassenger = () => {
 		console.log('addPassenger')
@@ -48,21 +51,16 @@ export const useRZHDForm = () => {
 
 	const splitNameWithCount = useMemo(() => {
 		const newPassengerFormName = {}
-		const fieldName = `passenger[${counter}]`;
 
-		for (let formName in defaultValues) {
-			newPassengerFormName[formName] = `${fieldName}.${formName}`
+		for(let i = 0; i < counter; i++) {
+			const innerObject = {}
+			const fieldName = `passenger[${i}]`;
+
+			for (let formName in defaultValues) innerObject[formName] = `${fieldName}.${formName}`;
+			newPassengerFormName[i] = innerObject
 		}
-
 		return newPassengerFormName
 	}, [counter]);
-
-	console.log('splitNameWithCount: ', splitNameWithCount);
-
-	// useForm initialize
-	const {handleSubmit, control} = useForm({
-		defaultValues: defaultValues,
-	});
 
 	return {
 		useForm: {

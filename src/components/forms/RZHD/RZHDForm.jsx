@@ -18,9 +18,8 @@ const RZHDForm = () => {
 			splitNameWithCount
 		},
 		onSubmit
-	} = useRZHDForm();
+	} = useRZHDForm()
 
-	console.log('counter: ', counter);
 
 	return (
 		<>
@@ -32,7 +31,7 @@ const RZHDForm = () => {
 						key={i}
 						index={item}
 						control={control}
-						names={splitNameWithCount}
+						names={splitNameWithCount[counter - 1]}
 						deletePassenger={deletePassenger}
 					/>
 				))}
