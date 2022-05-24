@@ -2,7 +2,6 @@
   "name": "rzhd-form",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://satonin12.github.io",
   "dependencies": {
     "@emotion/react": "^11.9.0",
     "@emotion/styled": "^11.8.1",
@@ -28,9 +27,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "prettier": "prettier --write **/*.js",
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d build"
+    "prettier": "prettier --write **/*.js"
   },
   "eslintConfig": {
     "extends": [
@@ -55,7 +52,6 @@
     "eslint": "^8.16.0",
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-react": "^7.30.0",
-    "gh-pages": "^4.0.0",
     "prettier": "^2.6.2"
   }
 }

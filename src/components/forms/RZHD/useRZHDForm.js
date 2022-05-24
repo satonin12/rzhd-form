@@ -5,7 +5,6 @@ import axios from "axios";
 
 export const useRZHDForm = () => {
 	// * state's
-	const [passenger, setPassenger] = useState([]);
 	const [counter, setCounter] = useState(0);
 
 	// memo's values
@@ -44,10 +43,7 @@ export const useRZHDForm = () => {
 
 	// * Handlers
 	const addPassenger = () => {
-		console.log('addPassenger')
-		setPassenger(prevState => [...prevState, counter]);
 		setCounter(prevState => prevState + 1);
-
 		append({
 			...defaultValues
 		})
@@ -55,18 +51,13 @@ export const useRZHDForm = () => {
 	}
 
 	const deletePassenger = (passengerIndex) => {
-		console.log('deletePassenger: ', passengerIndex)
-		setPassenger(prevState => [...prevState.filter(item => item !== passengerIndex)]);
 		setCounter(prevState => prevState - 1);
-
 		remove(passengerIndex);
 	}
 
 	const onSubmit = async (data) => {
 		try {
-			console.log('data: ', data);
-			const response = await rzhdAxios.post('/passenger/add', data)
-			console.log('response: ', response);
+			await rzhdAxios.post('/passenger/add', data);
 		} catch (err) {
 			if(axios.isAxiosError(err)){
 				console.log('err: ', err);
@@ -86,7 +77,7 @@ export const useRZHDForm = () => {
 			deletePassenger
 		},
 		formValues: {
-			counter, passenger,
+			counter,
 		},
 		onSubmit
 	}
