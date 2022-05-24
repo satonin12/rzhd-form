@@ -16,8 +16,6 @@ const RZHDForm = () => {
 		onSubmit,
 	} = useRZHDForm();
 
-	console.log('fields: ', fields)
-
 	return (
 		<ContainerMUI>
 			<WrapperMUI>
