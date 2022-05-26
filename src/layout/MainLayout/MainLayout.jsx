@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import ContentLayout from "../ContentLayout/ContentLayout";
+import ContentLayout from '../ContentLayout/ContentLayout';
 
-import {MainLayoutStyled} from "./style";
+import {MainLayoutStyled} from './style';
 
 const MainLayout = ({ children }) => {
 	return (
@@ -12,12 +12,12 @@ const MainLayout = ({ children }) => {
 				{children}
 			</ContentLayout>
 		</MainLayoutMUI>
-	)
+	);
 };
 
 const {
 	MainLayoutMUI,
-} = MainLayoutStyled()
+} = MainLayoutStyled();
 
 MainLayout.propTypes = {
 	children: PropTypes.node.isRequired,

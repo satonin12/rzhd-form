@@ -1,6 +1,5 @@
 import React from 'react';
 import { Controller } from 'react-hook-form';
-
 import PropTypes from 'prop-types';
 
 const FormFieldWithController = ({ controller, children }) => {
@@ -14,7 +13,7 @@ const FormFieldWithController = ({ controller, children }) => {
 				const childrenWithControllerProps = React.cloneElement(children, {
 					value,
 					onChange,
-				})
+				});
 
 				return <>{childrenWithControllerProps}</>;
 			}}
@@ -34,7 +33,7 @@ FormFieldWithController.propTypes = {
 			required: PropTypes.bool,
 		}),
 	}),
-	props: PropTypes.node,
+	children: PropTypes.node,
 };
 
 export default React.memo(FormFieldWithController);

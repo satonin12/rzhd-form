@@ -1,9 +1,15 @@
 import React from 'react';
-import {Checkbox} from "@mui/material";
+import {Checkbox} from '@mui/material';
+import PropTypes from 'prop-types';
 
-const CheckBoxUI = (props) => {
-	const {value, onChange, inputProps} = props
+const CheckBoxUI = ({value, onChange, inputProps}) => {
 	return <Checkbox {...inputProps} checked={value} onChange={onChange} />;
-}
+};
 
-export default React.memo(CheckBoxUI)
+CheckBoxUI.propTypes = {
+	value: PropTypes.bool.isRequired,
+	onChange: PropTypes.func.isRequired,
+	inputProps: PropTypes.object.isRequired,
+};
+
+export default React.memo(CheckBoxUI);

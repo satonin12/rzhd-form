@@ -1,1 +1,1 @@
-export const HOST = process.env['PUBLIC_HOST']
+export const HOST = process.env['PUBLIC_HOST'];

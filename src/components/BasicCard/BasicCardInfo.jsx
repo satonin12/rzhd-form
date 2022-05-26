@@ -1,11 +1,12 @@
 import React from 'react';
-import {Typography} from "@mui/material";
+import {Typography} from '@mui/material';
+import PropTypes from 'prop-types';
 
-import {reverse} from "../../lib/services/services";
+import {reverse} from '../../lib/services/services';
 
-import TypeDocumentArray from "../forms/RZHD/TypeDocumentData.json";
-import NationalDataArray from "../forms/RZHD/NationalData.json";
-import {BasicCardStyled} from "./style";
+import TypeDocumentArray from '../forms/RZHD/TypeDocumentData.json';
+import NationalDataArray from '../forms/RZHD/NationalData.json';
+import {BasicCardStyled} from './style';
 
 const BasicCardInfo = ({index, passanger}) => {
 	const searchLabel = (searchValueDoc, searchValueNat) => {
@@ -60,11 +61,25 @@ const BasicCardInfo = ({index, passanger}) => {
 				{passanger.email}
 			</Typography>
 		</CardContentMUI>
-	)
-}
+	);
+};
 
 const {
 	CardContentMUI
 } = BasicCardStyled();
 
-export default BasicCardInfo
+BasicCardInfo.propTypes = {
+	index: PropTypes.number.isRequired,
+	passanger: PropTypes.shape({
+		phone: PropTypes.string,
+		email: PropTypes.string,
+		national: PropTypes.string,
+		type_doc: PropTypes.string,
+		birthday: PropTypes.string,
+		patronymic: PropTypes.string,
+		name: PropTypes.string,
+		surname: PropTypes.string,
+	}),
+};
+
+export default BasicCardInfo;

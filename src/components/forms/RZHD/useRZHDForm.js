@@ -1,7 +1,7 @@
-import {useMemo, useState} from 'react';
-import {useFieldArray, useForm} from "react-hook-form";
-import {rzhdAxios} from "../../../lib/http";
-import axios from "axios";
+import { useMemo, useState } from 'react';
+import { useFieldArray, useForm } from 'react-hook-form';
+import { rzhdAxios } from '../../../lib/http';
+import axios from 'axios';
 
 export const useRZHDForm = () => {
 	// * state's
@@ -31,35 +31,34 @@ export const useRZHDForm = () => {
 	);
 
 	// useForm initialize
-	const {handleSubmit, control, watch} = useForm({
+	const { handleSubmit, control, watch } = useForm({
 		defaultValues: {
-			passenger: []
-		}
+			passenger: [],
+		},
 	});
-	const {fields, append, remove} = useFieldArray({
+	const { fields, append, remove } = useFieldArray({
 		control,
-		name: 'passenger'
-	})
+		name: 'passenger',
+	});
 
 	// * Handlers
 	const addPassenger = () => {
-		setCounter(prevState => prevState + 1);
+		setCounter((prevState) => prevState + 1);
 		append({
-			...defaultValues
-		})
-
-	}
+			...defaultValues,
+		});
+	};
 
 	const deletePassenger = (passengerIndex) => {
-		setCounter(prevState => prevState - 1);
+		setCounter((prevState) => prevState - 1);
 		remove(passengerIndex);
-	}
+	};
 
 	const onSubmit = async (data) => {
 		try {
 			await rzhdAxios.post('/passenger/add', data);
 		} catch (err) {
-			if(axios.isAxiosError(err)){
+			if (axios.isAxiosError(err)) {
 				console.log('err: ', err);
 			}
 		}
@@ -70,15 +69,15 @@ export const useRZHDForm = () => {
 			handleSubmit,
 			control,
 			watch,
-			fields
+			fields,
 		},
 		formHandlers: {
 			addPassenger,
-			deletePassenger
+			deletePassenger,
 		},
 		formValues: {
 			counter,
 		},
-		onSubmit
-	}
-}
+		onSubmit,
+	};
+};

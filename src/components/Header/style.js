@@ -1,7 +1,6 @@
-import {styled} from '@mui/material'
+import { styled } from '@mui/material';
 
 export const HeaderStyled = () => {
-
 	const WrapperMUI = styled('header')(() => ({
 		height: '53px',
 		padding: '15px',
@@ -9,7 +8,7 @@ export const HeaderStyled = () => {
 		display: 'flex',
 		justifyContent: 'space-between',
 		margin: '0',
-	}))
+	}));
 
 	const LogoMUI = styled('div')(() => ({
 		width: '50px',
@@ -18,18 +17,16 @@ export const HeaderStyled = () => {
 		'& img': {
 			width: '50px',
 			height: '50px',
-		}
-	}))
+		},
+	}));
 
-	const HeaderNavMUI = styled('nav')(() => ({
-
-	}))
+	const HeaderNavMUI = styled('nav')(() => ({}));
 
 	const NavListMUI = styled('ul')(() => ({
 		display: 'flex',
 		margin: '0',
 		listStyleType: 'none',
-	}))
+	}));
 
 	const NavItemMUI = styled('li')(() => ({
 		fontWeight: '500',
@@ -37,13 +34,13 @@ export const HeaderStyled = () => {
 		lineHeight: '128%',
 		color: '#000000',
 		padding: '17px 20px',
-	}))
+	}));
 
 	const LinkMUI = styled('a')(() => ({
 		color: '#000000',
 		textDecoration: 'none',
-		cursor: 'pointer'
-	}))
+		cursor: 'pointer',
+	}));
 
 	return {
 		LogoMUI,
@@ -51,6 +48,6 @@ export const HeaderStyled = () => {
 		HeaderNavMUI,
 		NavListMUI,
 		NavItemMUI,
-		LinkMUI
-	}
-}
+		LinkMUI,
+	};
+};
