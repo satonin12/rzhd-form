@@ -31,8 +31,8 @@ const Header = () => {
 				</NavListMUI>
 			</HeaderNavMUI>
 		</WrapperMUI>
-	)
-}
+	);
+};
 
 const {
 	LogoMUI,
@@ -41,6 +41,6 @@ const {
 	NavListMUI,
 	NavItemMUI,
 	LinkMUI
-} = HeaderStyled()
+} = HeaderStyled();
 
-export default React.memo(Header)
+export default React.memo(Header);

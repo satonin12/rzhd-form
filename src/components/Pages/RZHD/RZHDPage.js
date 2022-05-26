@@ -1,19 +1,17 @@
-import React from 'react'
+import React from 'react';
 
-import RZHDForm from "../../forms/RZHD/RZHDForm";
+import RZHDForm from '../../forms/RZHD/RZHDForm';
 
-import {RZHDPageStyled} from "./style";
+import { RZHDPageStyled } from './style';
 
 const RZHDPage = () => {
 	return (
 		<WrapperMUI>
 			<RZHDForm />
 		</WrapperMUI>
-	)
-}
+	);
+};
 
-const {
-	WrapperMUI
-} = RZHDPageStyled()
+const { WrapperMUI } = RZHDPageStyled();
 
 export default RZHDPage;

@@ -1,5 +1,6 @@
 import React from 'react';
 import {Button, MenuItem} from '@mui/material';
+import PropTypes from 'prop-types';
 
 import CheckBoxUI from '../../../../UI/CheckBoxUI/CheckBoxUI';
 import TextFieldUI from '../../../../UI/TextFieldUI/TextFieldUI';
@@ -10,7 +11,7 @@ import TypeDocumentArray from '../TypeDocumentData.json';
 import NationalDataArray from '../NationalData.json';
 
 import { RZHDFormStyled } from '../style';
-import TextFieldMaskUI from "../../../../UI/TextFieldUI/TextFieldMaskUI/TextFieldMaskUI";
+import TextFieldMaskUI from '../../../../UI/TextFieldUI/TextFieldMaskUI/TextFieldMaskUI';
 
 const RZHDFields = ({ control, field, index, deletePassenger }) => {
 
@@ -298,5 +299,12 @@ const RZHDFields = ({ control, field, index, deletePassenger }) => {
 };
 
 const { RowMUI, ColumnMUI, TextMUI } = RZHDFormStyled();
+
+RZHDFields.propTypes = {
+	control: PropTypes.object.isRequired,
+	field: PropTypes.object.isRequired,
+	index: PropTypes.number.isRequired,
+	deletePassenger: PropTypes.func.isRequired,
+};
 
 export default React.memo(RZHDFields);

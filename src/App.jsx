@@ -2,7 +2,7 @@ import React from 'react';
 
 import RZHDPage from './components/Pages/RZHD/RZHDPage';
 import MainLayout from './layout/MainLayout/MainLayout';
-import Header from "./components/Header/Header";
+import Header from './components/Header/Header';
 
 const App = () => {
 	return (
@@ -10,7 +10,7 @@ const App = () => {
 			<Header />
 			<RZHDPage/>
 		</MainLayout>
-	)
+	);
 };
 
 export default App;
